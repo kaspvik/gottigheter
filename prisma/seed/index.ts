@@ -1,16 +1,12 @@
-import { db } from "../db";
-import { seedDatabase } from "./seed-db";
+// prisma/seed/index.ts
+import { seedDb } from "./seed-db";
 
 async function main() {
-  await seedDatabase();
+  await seedDb();
+  console.log("Seed klart.");
 }
 
-main()
-  .then(async () => {
-    await db.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await db.$disconnect();
-    process.exit(1);
-  });
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
