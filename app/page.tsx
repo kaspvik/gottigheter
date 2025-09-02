@@ -1,12 +1,13 @@
-import { db } from "@/prisma/db";
-import TodoList from "./ui/todo-list";
+import { prisma } from "@/prisma/db";
+import WineJournal from "./ui/wine-journal";
 
-export default async function Home() {
-  const todos = await db.todo.findMany();
+export default async function Page() {
+  const wines = await prisma.wine.findMany({ orderBy: { createdAt: "desc" } });
 
   return (
     <main>
-      <TodoList defaultTodos={todos} />
+      <h1>Wine Journal</h1>
+      <WineJournal defaultWines={wines} />
     </main>
   );
 }
