@@ -1,7 +1,6 @@
 describe("Lägga till och ta bort vin", () => {
   beforeEach(() => {
     cy.task("reseed");
-    cy.visit("/");
   });
 
   const fillForm = (
@@ -26,17 +25,18 @@ describe("Lägga till och ta bort vin", () => {
   };
 
   it("kan lägga till ett nytt vin", () => {
-    cy.get("[data-testid=wine-row]").should("have.length", 3);
-
+    cy.visit("/wines/new");
     fillForm();
     cy.get("[data-testid=submit]").click();
 
-    cy.get("[data-testid=feedback]").should("have.class", "success");
+    cy.url().should("include", "/wines");
+
     cy.get("[data-testid=wine-row]").should("have.length", 4);
     cy.contains("Testvin 123").should("exist");
   });
 
   it("ger fel om ett obligatoriskt fält saknas", () => {
+    cy.visit("/wines/new");
     fillForm({ type: "" });
     cy.get("[data-testid=submit]").click();
 
@@ -46,6 +46,7 @@ describe("Lägga till och ta bort vin", () => {
   });
 
   it("kan ta bort ett vin", () => {
+    cy.visit("/wines");
     cy.contains("Barolo Bricco")
       .parents("[data-testid=wine-row]")
       .find("button")
