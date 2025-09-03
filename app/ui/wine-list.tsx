@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import styles from "./wine-list.module.css";
 
 type Wine = {
   id: string;
@@ -38,7 +39,9 @@ export default function WineList({ defaultWines }: { defaultWines: Wine[] }) {
     n ? "★".repeat(n) + "☆".repeat(5 - n) : "—";
 
   return (
-    <section className="list" aria-label="wine-list">
+    <section className={styles.list} aria-label="wine-list">
+      <h2 className={styles.heading}>Vinlistan</h2>
+
       {msg && (
         <p
           className={msg.type === "error" ? "error" : "success"}
@@ -46,38 +49,37 @@ export default function WineList({ defaultWines }: { defaultWines: Wine[] }) {
           {msg.text}
         </p>
       )}
-      {wines.map((w) => (
-        <div className="row" key={w.id} data-testid="wine-row">
-          <div style={{ gridColumn: "1 / -1" }}>
-            <h3 style={{ marginBottom: 4 }}>{w.name}</h3>
-          </div>
-          <div>{w.country}</div>
-          <div>{w.grape}</div>
-          <div>{w.type}</div>
 
-          <div title={w.rating ? `${w.rating}/5` : "Inget betyg"}>
-            {stars(w.rating)}
-          </div>
-
-          <div style={{ gridColumn: "1 / -1", opacity: 0.9 }}>
-            {w.notes ? (
-              <em>“{w.notes}”</em>
-            ) : (
-              <span style={{ color: "#777" }}>Inga anteckningar</span>
-            )}
-          </div>
-
-          <div>
+      <div className={styles.rows}>
+        {wines.map((w) => (
+          <div className={styles.card} key={w.id} data-testid="wine-row">
+            <h3 className={styles.title}>{w.name}</h3>
+            <div className={styles.meta}>
+              <span>{w.country}</span> • <span>{w.grape}</span> •{" "}
+              <span>{w.type}</span>
+            </div>
+            <div
+              className={styles.rating}
+              title={w.rating ? `${w.rating}/5` : "Inget betyg"}>
+              {stars(w.rating)}
+            </div>
+            <div className={styles.notes}>
+              {w.notes ? (
+                <em>“{w.notes}”</em>
+              ) : (
+                <span className={styles.empty}>Inga anteckningar</span>
+              )}
+            </div>
             <button
-              className="danger"
+              className={styles.danger}
               data-testid={`delete-${w.id}`}
               onClick={() => removeWine(w.id)}>
               Ta bort
             </button>
           </div>
-        </div>
-      ))}
-      {wines.length === 0 && <p>Inga viner ännu.</p>}
+        ))}
+        {wines.length === 0 && <p>Inga viner ännu.</p>}
+      </div>
     </section>
   );
 }

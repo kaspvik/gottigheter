@@ -1,0 +1,90 @@
+.list {
+  container-type: size; 
+  color: #111;
+
+  background: #fff7d5;
+  box-shadow: 0 80px 16px rgba(0, 0, 0, 0.40);
+
+  width: min(95vw, 1000px);
+  aspect-ratio: 210 / 297;   
+  margin: 1.25rem auto;
+  padding: clamp(12px, 2cqw, 20px);
+
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2cqw, 12px); 
+
+  overflow: auto;
+}
+
+.heading {
+  text-align: center;
+  font-family: "Times New Roman", Georgia, serif;
+  font-size: clamp(22px, 4cqw, 30px);
+  margin: 0;
+  padding-bottom: clamp(4px, .8cqh, 8px);
+  border-bottom: 2px solid #000000;
+}
+
+.rows {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  --g: clamp(6px, 1.2cqw, 12px);
+  gap: var(--g);
+}
+
+.card {
+  background: transparent;
+  padding: clamp(6px, 1.4cqw, 12px);
+
+  flex: 1 1 calc(50% - var(--g));
+  min-width: calc(50% - var(--g));
+
+  display: flex;
+  flex-direction: column;
+  row-gap: clamp(4px, .8cqh, 8px);
+}
+
+.title {
+  margin: 0 0 clamp(2px, .8cqh, 6px);
+  font-family: "Times New Roman", Georgia, serif;
+  font-size: clamp(14px, 2cqw, 17px);
+  line-height: 1.2;
+  color: #111;
+}
+
+.meta {
+  color: #222;
+  font-size: clamp(12px, 1.6cqw, 14px);
+  margin: 0;
+}
+
+.rating {
+  font-size: clamp(13px, 2cqw, 16px);
+  color: #d4af37;
+  margin: 0;
+}
+
+.notes {
+  font-family: "Bradley Hand", "Comic Sans MS", cursive;
+  font-size: clamp(12px, 1.8cqw, 15px);
+  background: rgba(0,0,0,0.02);
+  border-left: 3px solid rgba(0,0,0,0.08);
+  padding: clamp(4px, 1cqw, 8px) clamp(6px, 1.5cqw, 10px);
+  color: #111;
+}
+
+.empty { color: #777; font-style: italic; }
+
+.danger {
+  align-self: flex-start;
+  background: #b22222;
+  color: #fff;
+  border: none;
+  padding: clamp(4px, 1.5cqw, 8px) clamp(8px, 2cqw, 12px);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.danger:hover { background: #8b0000; }
