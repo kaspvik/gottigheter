@@ -5,7 +5,7 @@
   background: #fff7d5;
   box-shadow: 0 80px 16px rgba(0, 0, 0, 0.40);
 
-  width: min(95vw, 1000px);
+  width: min(95vw, 500px);
   aspect-ratio: 210 / 297;   
   margin: 1.25rem auto;
   padding: clamp(12px, 2cqw, 20px);

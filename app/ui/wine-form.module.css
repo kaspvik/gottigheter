@@ -5,7 +5,7 @@
   background: #fff7d5;
   box-shadow: 0 80px 16px rgba(0, 0, 0, 0.40);
 
-  width: min(95vw, 900px);
+  width: min(95vw, 500px);
   aspect-ratio: 210 / 297; /* A4 */
   margin: 1.25rem auto;
   padding: clamp(12px, 2cqw, 20px);
@@ -49,26 +49,32 @@
 
 .cell label {
   font-size: clamp(12px, 1.6cqw, 14px);
+  color: #111;
+  opacity: .9;
+  margin-bottom: 2px;
 }
 
 .cell :where(input, select, textarea) {
   font: inherit;
   color: #111;
-  background: rgba(255,255,255,0.9);
-  border: 1px solid #cfcfcf;
-  border-radius: 8px;
-  padding: clamp(8px, 1.5cqw, 12px);
-  outline: none;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,.06);
+  background: transparent;       
+  border: none;                  
+  border-bottom: 2px solid #000; 
+  border-radius: 0;              
+  padding: 6px 2px 4px;          
+  outline: none;                 
+  box-shadow: none;              
+  transition: border-color .15s ease, background-color .15s ease;
+  caret-color: #000;             
+}
+
+.cell :where(input, select, textarea):focus {
+  border-bottom-color: #000;
+  background: transparent;
 }
 
 .cell :where(input, textarea)::placeholder {
-  color: #999;
-}
-
-.cell textarea {
-  resize: vertical;
-  min-height: clamp(80px, 20cqh, 140px);
+  color: rgba(0,0,0,0.45);
 }
 
 .primary {
