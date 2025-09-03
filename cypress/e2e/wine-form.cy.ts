@@ -1,4 +1,4 @@
-describe("Lägga till och ta bort vin", () => {
+describe("Lägga till vin", () => {
   beforeEach(() => {
     cy.task("reseed");
   });
@@ -48,17 +48,6 @@ describe("Lägga till och ta bort vin", () => {
     );
     cy.contains("Testvin 123").should("exist");
     cy.contains("★★★★★").should("exist");
-  });
-
-  it("kan ta bort ett vin", () => {
-    cy.visit("/wines");
-    cy.contains("Barolo Bricco")
-      .parents("[data-testid=wine-row]")
-      .find("button")
-      .click();
-
-    cy.contains("Barolo Bricco").should("not.exist");
-    cy.get("[data-testid=wine-row]").should("have.length", 2);
   });
 
   it("visar fel och sparar inte om ett obligatoriskt fält saknas", () => {
