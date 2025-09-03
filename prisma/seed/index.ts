@@ -1,4 +1,3 @@
-// prisma/seed/index.ts
 import { seedDb } from "./seed-db";
 
 async function main() {

@@ -7,6 +7,8 @@ type Wine = {
   country: string;
   grape: string;
   type: string;
+  notes?: string | null;
+  rating?: number | null;
 };
 
 export default function WineList({ defaultWines }: { defaultWines: Wine[] }) {
@@ -32,6 +34,9 @@ export default function WineList({ defaultWines }: { defaultWines: Wine[] }) {
     }
   }
 
+  const stars = (n?: number | null) =>
+    n ? "★".repeat(n) + "☆".repeat(5 - n) : "—";
+
   return (
     <section className="list" aria-label="wine-list">
       {msg && (
@@ -43,10 +48,25 @@ export default function WineList({ defaultWines }: { defaultWines: Wine[] }) {
       )}
       {wines.map((w) => (
         <div className="row" key={w.id} data-testid="wine-row">
-          <h3>{w.name}</h3>
+          <div style={{ gridColumn: "1 / -1" }}>
+            <h3 style={{ marginBottom: 4 }}>{w.name}</h3>
+          </div>
           <div>{w.country}</div>
           <div>{w.grape}</div>
           <div>{w.type}</div>
+
+          <div title={w.rating ? `${w.rating}/5` : "Inget betyg"}>
+            {stars(w.rating)}
+          </div>
+
+          <div style={{ gridColumn: "1 / -1", opacity: 0.9 }}>
+            {w.notes ? (
+              <em>“{w.notes}”</em>
+            ) : (
+              <span style={{ color: "#777" }}>Inga anteckningar</span>
+            )}
+          </div>
+
           <div>
             <button
               className="danger"

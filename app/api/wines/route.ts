@@ -8,6 +8,13 @@ const WineSchema = z.object({
   country: z.string().min(2, "Ange land"),
   grape: z.string().min(2, "Ange druva"),
   type: z.string().min(2, "Ange sort"),
+  notes: z.string().trim().max(1000).optional().or(z.literal("")),
+  rating: z
+    .number({ invalid_type_error: "Betyget måste vara en siffra 1–5" })
+    .int()
+    .min(1, "Betyget måste vara minst 1")
+    .max(5, "Betyget får högst vara 5")
+    .optional(),
 });
 
 export async function GET() {
@@ -17,8 +24,24 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
-    const data = WineSchema.parse(await req.json());
-    const created = await prisma.wine.create({ data });
+    const body = await req.json();
+    if (typeof body.rating === "string" && body.rating !== "") {
+      body.rating = parseInt(body.rating, 10);
+    } else if (body.rating === "") {
+      body.rating = undefined;
+    }
+    const data = WineSchema.parse(body);
+
+    const created = await prisma.wine.create({
+      data: {
+        name: data.name,
+        country: data.country,
+        grape: data.grape,
+        type: data.type,
+        notes: data.notes ? data.notes : null,
+        rating: data.rating ?? null,
+      },
+    });
     return NextResponse.json({ wine: created }, { status: 201 });
   } catch (err: unknown) {
     if (

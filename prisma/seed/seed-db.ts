@@ -6,14 +6,14 @@ const url =
     ? process.env.TEST_DATABASE_URL
     : process.env.DATABASE_URL;
 
-export async function seedDatabase(opts: { drop?: boolean } = {}) {
-  if (!url) throw new Error("Saknar DB-URL. Kolla .env.local och APP_ENV.");
+export async function seedDb(): Promise<void> {
+  if (!url)
+    throw new Error(
+      "Saknar DB-URL. Kolla .env.local, TEST_DATABASE_URL och APP_ENV."
+    );
   const prisma = new PrismaClient({ datasources: { db: { url } } });
-
   try {
-    if (opts.drop) {
-      await prisma.wine.deleteMany({});
-    }
+    await prisma.wine.deleteMany({});
     await seedWines(prisma);
   } finally {
     await prisma.$disconnect();

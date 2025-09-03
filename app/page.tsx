@@ -9,7 +9,7 @@ export default function Home() {
           Lägg till vin
         </Link>
         <Link href="/wines" data-testid="go-list">
-          Visa alla viner
+          Vinlistan
         </Link>
       </div>
     </main>

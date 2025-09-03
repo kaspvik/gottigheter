@@ -9,6 +9,8 @@ export default function WineForm() {
   const [country, setCountry] = useState("");
   const [grape, setGrape] = useState("");
   const [type, setType] = useState("");
+  const [notes, setNotes] = useState("");
+  const [rating, setRating] = useState<string>("");
   const [msg, setMsg] = useState<{
     type: "error" | "success";
     text: string;
@@ -29,7 +31,14 @@ export default function WineForm() {
       const res = await fetch("/api/wines", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, country, grape, type }),
+        body: JSON.stringify({
+          name,
+          country,
+          grape,
+          type,
+          notes: notes.trim(),
+          rating: rating ? Number(rating) : "",
+        }),
       });
       const data = await res.json();
 
@@ -41,6 +50,8 @@ export default function WineForm() {
         setCountry("");
         setGrape("");
         setType("");
+        setNotes("");
+        setRating("");
         router.push("/wines");
         router.refresh();
       }
@@ -63,6 +74,7 @@ export default function WineForm() {
           placeholder="t.ex. Barolo Bricco"
         />
       </div>
+
       <div>
         <label htmlFor="country">Land</label>
         <input
@@ -73,6 +85,7 @@ export default function WineForm() {
           placeholder="Italien"
         />
       </div>
+
       <div>
         <label htmlFor="grape">Druva</label>
         <input
@@ -83,6 +96,7 @@ export default function WineForm() {
           placeholder="Nebbiolo"
         />
       </div>
+
       <div className="full">
         <label htmlFor="type">Sort</label>
         <select
@@ -98,6 +112,35 @@ export default function WineForm() {
           <option>Annat</option>
         </select>
       </div>
+
+      <div className="full">
+        <label htmlFor="notes">Recension / Tankar</label>
+        <textarea
+          id="notes"
+          data-testid="notes"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+          placeholder="Vad tyckte du?"
+          rows={4}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="rating">Betyg (1–5)</label>
+        <select
+          id="rating"
+          data-testid="rating"
+          value={rating}
+          onChange={(e) => setRating(e.target.value)}>
+          <option value="">Inget betyg</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
       <div className="full">
         <button
           className="primary"
@@ -107,6 +150,7 @@ export default function WineForm() {
           {loading ? "Sparar..." : "Lägg till vin"}
         </button>
       </div>
+
       {msg && (
         <p
           className={msg.type === "error" ? "error" : "success"}
