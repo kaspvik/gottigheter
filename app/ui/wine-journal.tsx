@@ -152,7 +152,10 @@ export default function WineJournal({ defaultWines }: Props) {
             <div>{w.grape}</div>
             <div>{w.type}</div>
             <div>
-              <button className="danger" onClick={() => removeWine(w.id)}>
+              <button
+                className="danger"
+                data-testid={`delete-${w.id}`}
+                onClick={() => removeWine(w.id)}>
                 Ta bort
               </button>
             </div>

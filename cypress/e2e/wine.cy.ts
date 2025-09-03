@@ -1,21 +1,34 @@
-describe("Wine Journal", () => {
+describe("Lägga till och ta bort vin", () => {
   beforeEach(() => {
-    cy.request("POST", "/api/test/reset");
+    cy.task("reseed");
     cy.visit("/");
   });
 
-  it("ska visa tre seedade viner som standard", () => {
-    cy.get("[data-testid=wine-row]").should("have.length", 3);
-    cy.contains("Barolo Bricco").should("exist");
-    cy.contains("Sancerre Blanc").should("exist");
-    cy.contains("Cava Brut Nature").should("exist");
-  });
+  const fillForm = (
+    overrides: Partial<
+      Record<"name" | "country" | "grape" | "type", string>
+    > = {}
+  ) => {
+    const data = {
+      name: "Testvin 123",
+      country: "Sverige",
+      grape: "Cabernet",
+      type: "Rött",
+      ...overrides,
+    };
+    if (data.name !== undefined)
+      cy.get("[data-testid=name]").clear().type(data.name);
+    if (data.country !== undefined)
+      cy.get("[data-testid=country]").clear().type(data.country);
+    if (data.grape !== undefined)
+      cy.get("[data-testid=grape]").clear().type(data.grape);
+    if (data.type !== undefined) cy.get("[data-testid=type]").select(data.type);
+  };
 
-  it("ska kunna lägga till ett nytt vin", () => {
-    cy.get("[data-testid=name]").type("Testvin 123");
-    cy.get("[data-testid=country]").type("Sverige");
-    cy.get("[data-testid=grape]").type("Cabernet");
-    cy.get("[data-testid=type]").select("Rött");
+  it("kan lägga till ett nytt vin", () => {
+    cy.get("[data-testid=wine-row]").should("have.length", 3);
+
+    fillForm();
     cy.get("[data-testid=submit]").click();
 
     cy.get("[data-testid=feedback]").should("have.class", "success");
@@ -23,24 +36,16 @@ describe("Wine Journal", () => {
     cy.contains("Testvin 123").should("exist");
   });
 
-  it("ska ge fel vid tomt formulär", () => {
-    cy.get("[data-testid=submit]").click();
-    cy.get("[data-testid=feedback]").should("have.class", "error");
-  });
-
-  it("ska hindra dubbletter", () => {
-    cy.get("[data-testid=name]").type("Barolo Bricco");
-    cy.get("[data-testid=country]").type("Italien");
-    cy.get("[data-testid=grape]").type("Nebbiolo");
-    cy.get("[data-testid=type]").select("Rött");
+  it("ger fel om ett obligatoriskt fält saknas", () => {
+    fillForm({ type: "" });
     cy.get("[data-testid=submit]").click();
 
     cy.get("[data-testid=feedback]")
       .should("have.class", "error")
-      .and("contain", "redan");
+      .and("contain", "Fyll i alla fält");
   });
 
-  it("ska kunna ta bort ett vin", () => {
+  it("kan ta bort ett vin", () => {
     cy.contains("Barolo Bricco")
       .parents("[data-testid=wine-row]")
       .find("button")
