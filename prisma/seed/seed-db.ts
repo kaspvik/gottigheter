@@ -19,3 +19,7 @@ export async function seedDb(): Promise<void> {
     await prisma.$disconnect();
   }
 }
+
+export async function seedDatabase(_opts: { drop?: boolean } = {}) {
+  return seedDb();
+}

@@ -10,10 +10,15 @@ const WineSchema = z.object({
   type: z.string().min(2, "Ange sort"),
   notes: z.string().trim().max(1000).optional().or(z.literal("")),
   rating: z
-    .number({ invalid_type_error: "Betyget måste vara en siffra 1–5" })
-    .int()
-    .min(1, "Betyget måste vara minst 1")
-    .max(5, "Betyget får högst vara 5")
+    .union([
+      z.number().int().min(1).max(5),
+      z
+        .string()
+        .regex(/^[1-5]$/)
+        .transform((s) => parseInt(s, 10)),
+      z.literal(""),
+      z.undefined(),
+    ])
     .optional(),
 });
 
@@ -24,40 +29,42 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    if (typeof body.rating === "string" && body.rating !== "") {
-      body.rating = parseInt(body.rating, 10);
-    } else if (body.rating === "") {
-      body.rating = undefined;
-    }
-    const data = WineSchema.parse(body);
+    const raw = await req.json();
+    const parsed = WineSchema.parse(raw);
+
+    const rating =
+      parsed.rating === "" || typeof parsed.rating === "undefined"
+        ? null
+        : (parsed.rating as number);
+    const notes =
+      typeof parsed.notes === "string" && parsed.notes.trim() !== ""
+        ? parsed.notes.trim()
+        : null;
 
     const created = await prisma.wine.create({
       data: {
-        name: data.name,
-        country: data.country,
-        grape: data.grape,
-        type: data.type,
-        notes: data.notes ? data.notes : null,
-        rating: data.rating ?? null,
+        name: parsed.name,
+        country: parsed.country,
+        grape: parsed.grape,
+        type: parsed.type,
+        notes,
+        rating,
       },
     });
+
     return NextResponse.json({ wine: created }, { status: 201 });
   } catch (err: unknown) {
-    if (
-      typeof err === "object" &&
-      err !== null &&
-      "issues" in err &&
-      Array.isArray((err as z.ZodError).issues)
-    ) {
+    if (err && typeof err === "object" && "issues" in err) {
       return NextResponse.json(
-        { error: (err as z.ZodError).issues[0]?.message },
+        {
+          error: (err as z.ZodError).issues[0]?.message ?? "Ogiltig inmatning",
+        },
         { status: 400 }
       );
     }
     if (
+      err &&
       typeof err === "object" &&
-      err !== null &&
       "code" in err &&
       (err as Prisma.PrismaClientKnownRequestError).code === "P2002"
     ) {
@@ -66,6 +73,7 @@ export async function POST(req: Request) {
         { status: 409 }
       );
     }
+    console.error("POST /api/wines error:", err);
     return NextResponse.json({ error: "Något gick fel" }, { status: 500 });
   }
 }

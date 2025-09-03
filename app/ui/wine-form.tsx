@@ -37,7 +37,7 @@ export default function WineForm() {
           grape,
           type,
           notes: notes.trim(),
-          rating: rating ? Number(rating) : "",
+          rating: rating ? Number(rating) : undefined,
         }),
       });
       const data = await res.json();
