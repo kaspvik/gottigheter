@@ -1,0 +1,33 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.stage {
+  position: relative;
+  width: 100px;   
+  height: 120px;  
+  margin: 8px auto 24px;
+}
+
+.item {
+  position: absolute;
+  transform-origin: center;
+}
+.item img {
+  display: block;
+  width: 100%;   
+  height: auto;
+}
+
+
