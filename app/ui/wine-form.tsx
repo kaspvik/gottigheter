@@ -61,11 +61,11 @@ export default function WineForm() {
 
   return (
     <form onSubmit={onSubmit} className={styles.paper} data-testid="wine-form">
-      <h2 className={styles.heading}>Nytt Vin</h2>
+      <h2 className={styles.heading}>Nytt Vin:</h2>
 
       <div className={styles.rows}>
         <div className={styles.cell}>
-          <label htmlFor="name">Namn</label>
+          <label htmlFor="name">Namn:</label>
           <input
             id="name"
             data-testid="name"
@@ -76,7 +76,7 @@ export default function WineForm() {
         </div>
 
         <div className={styles.cell}>
-          <label htmlFor="country">Land</label>
+          <label htmlFor="country">Land:</label>
           <input
             id="country"
             data-testid="country"
@@ -87,7 +87,7 @@ export default function WineForm() {
         </div>
 
         <div className={styles.cell}>
-          <label htmlFor="grape">Druva</label>
+          <label htmlFor="grape">Druva:</label>
           <input
             id="grape"
             data-testid="grape"
@@ -98,7 +98,7 @@ export default function WineForm() {
         </div>
 
         <div className={`${styles.cell} ${styles.cellFull}`}>
-          <label htmlFor="type">Sort</label>
+          <label htmlFor="type">Sort:</label>
           <select
             id="type"
             data-testid="type"
@@ -109,12 +109,13 @@ export default function WineForm() {
             <option>Vitt</option>
             <option>Rosé</option>
             <option>Mousserande</option>
+            <option>Orange</option>
             <option>Annat</option>
           </select>
         </div>
 
         <div className={`${styles.cell} ${styles.cellFull}`}>
-          <label htmlFor="notes">Recension / Tankar</label>
+          <label htmlFor="notes">Recension / Tankar:</label>
           <textarea
             id="notes"
             data-testid="notes"

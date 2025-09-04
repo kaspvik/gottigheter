@@ -3,7 +3,7 @@
   color: #111;
 
   background: #fff7d5;
-  box-shadow: 0 80px 16px rgba(0, 0, 0, 0.40);
+  box-shadow: 0 80px 16px rgba(10, 6, 6, 0.4);
 
   width: min(95vw, 500px);
   aspect-ratio: 210 / 297; /* A4 */
@@ -22,7 +22,7 @@
   font-size: clamp(42px, 4cqw, 28px);
   margin: 0;
   padding-bottom: clamp(4px, .8cqh, 8px);
-  border-bottom: 2px solid #cfcfcf;
+  border-bottom: 2px solid #000000;
 }
 
 .rows {
@@ -60,6 +60,7 @@
   background: transparent;       
   border: none;                  
   border-bottom: 2px solid #000; 
+   font-family: var(--font-caveat), cursive;
   border-radius: 0;              
   padding: 6px 2px 4px;          
   outline: none;                 
@@ -75,20 +76,33 @@
 
 .cell :where(input, textarea)::placeholder {
   font-size: clamp(13px, 1.4cqw, 12px);
+   font-family: var(--font-caveat), cursive;
   color: rgba(0,0,0,0.45);
 }
 
 .primary {
-  align-self: flex-center;
-  background: #8b0000;
-  color: #fff;
+  align-self: center;
+  font-family: "Beth Ellen", cursive;
+  font-size: clamp(20px, 2cqw, 20px);
+
+  color: #000000;
   border: none;
-  padding: clamp(8px, 1.6cqw, 12px) clamp(12px, 2.2cqw, 16px);
-  border-radius: 8px;
+  padding: clamp(6px, 1.4cqw, 10px) clamp(10px, 2cqw, 14px);
+  margin-top: 10px;
   cursor: pointer;
+  transition: background .2s ease, transform .15s ease;
 }
-.primary:hover { background: #5f0000; }
-.primary:disabled { opacity: .65; cursor: not-allowed; }
+
+.primary:hover {
+  background: #5f0000cc;
+  transform: translateY(-1px);
+}
+
+.primary:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+}
 
 .error {
   color: #b00020;
@@ -114,3 +128,5 @@
     min-width: 100%;
   }
 }
+
+

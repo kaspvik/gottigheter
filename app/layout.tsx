@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Beth_Ellen, Geist, Geist_Mono } from "next/font/google";
+import { Beth_Ellen, Caveat } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
 const bethEllen = Beth_Ellen({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-beth",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-caveat",
 });
 
 export const metadata: Metadata = {
@@ -25,8 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="sv">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${bethEllen.variable}`}>
+      <body className={`${bethEllen.variable} ${caveat.variable}`}>
         {children}
       </body>
     </html>
