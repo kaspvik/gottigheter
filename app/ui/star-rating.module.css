@@ -1,0 +1,40 @@
+.starsRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px; 
+  margin-top: 20px
+}
+
+.starButton {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  padding: 6px;
+  cursor: pointer;
+  line-height: 0;
+  transition: transform 0.18s ease, rotate 0.18s ease;
+}
+
+.starButton svg {
+  width: 34px;   
+  height: 34px;
+  transform: rotate(-1deg); 
+  transition: transform 0.18s ease, fill 0.18s ease;
+}
+
+.starButton:hover svg {
+  transform: scale(1.12) rotate(1.5deg); 
+  fill: #e0c14f; 
+}
+
+.starButton:active svg {
+  transform: scale(0.95) rotate(-1deg);
+}
+
+.clearStars:hover {
+  background: #f5f5f5;
+  color: #000;
+  transform: rotate(-1.5deg);
+}
