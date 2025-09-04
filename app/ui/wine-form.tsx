@@ -61,7 +61,7 @@ export default function WineForm() {
 
   return (
     <form onSubmit={onSubmit} className={styles.paper} data-testid="wine-form">
-      <h2 className={styles.heading}>Lägg till vin</h2>
+      <h2 className={styles.heading}>Nytt Vin</h2>
 
       <div className={styles.rows}>
         <div className={styles.cell}>
