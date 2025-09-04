@@ -34,7 +34,7 @@ describe("Lägga till vin", () => {
     cy.get("[data-testid=grape]").type("Cabernet");
     cy.get("[data-testid=type]").select("Rött");
     cy.get("[data-testid=notes]").type("Mörk frukt, pepprig, bra struktur.");
-    cy.get("[data-testid=rating]").select("5");
+    cy.get("[data-testid=star-5]").click();
 
     cy.get("[data-testid=submit]").click();
 

@@ -94,7 +94,6 @@
 }
 
 .primary:hover {
-  background: #5f0000cc;
   transform: translateY(-1px);
 }
 
@@ -120,6 +119,15 @@
   padding: clamp(6px, 1.2cqw, 10px);
   border-radius: 8px;
   margin-top: clamp(6px, 1cqh, 10px);
+}
+
+.visuallyHidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 @container (inline-size < 640px) {

@@ -1,4 +1,5 @@
 "use client";
+import StarRating from "@/app/ui/star-rating";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "./wine-form.module.css";
@@ -122,17 +123,23 @@ export default function WineForm() {
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Vad tyckte du?"
-            rows={4}
+            rows={1}
           />
         </div>
 
         <div className={styles.cell}>
           <label htmlFor="rating">Betyg (1–5)</label>
+
+          <StarRating value={rating} onChange={setRating} size={18} />
+
           <select
             id="rating"
             data-testid="rating"
             value={rating}
-            onChange={(e) => setRating(e.target.value)}>
+            onChange={(e) => setRating(e.target.value)}
+            className={styles.visuallyHidden}
+            aria-hidden="true"
+            tabIndex={-1}>
             <option value="">Inget betyg</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -155,7 +162,9 @@ export default function WineForm() {
 
       {msg && (
         <p
-          className={msg.type === "error" ? styles.error : styles.success}
+          className={`${msg.type === "error" ? styles.error : styles.success} ${
+            msg.type
+          }`}
           data-testid="feedback"
           aria-live="polite">
           {msg.text}
