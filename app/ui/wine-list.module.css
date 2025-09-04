@@ -47,17 +47,23 @@
   row-gap: clamp(4px, .8cqh, 8px);
 }
 
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .title {
-  margin: 0 0 clamp(2px, .8cqh, 6px);
-  font-family: "Times New Roman", Georgia, serif;
-  font-size: clamp(14px, 2cqw, 17px);
-  line-height: 1.2;
-  color: #111;
+  margin: 0;
+  font-family: var(--font-caveat), cursive;
+  font-weight: 900;
+  font-size: 1.2rem;
 }
 
 .meta {
   color: #222;
   font-size: clamp(12px, 1.6cqw, 14px);
+  font-family: var(--font-caveat), cursive;
   margin: 0;
 }
 
@@ -68,7 +74,7 @@
 }
 
 .notes {
-  font-family: "Bradley Hand", "Comic Sans MS", cursive;
+  font-family: var(--font-caveat), cursive;
   font-size: clamp(12px, 1.8cqw, 15px);
   background: rgba(0,0,0,0.02);
   border-left: 3px solid rgba(0,0,0,0.08);
@@ -76,15 +82,20 @@
   color: #111;
 }
 
-.empty { color: #777; font-style: italic; }
+.empty { color: #777; font-style: italic;   font-family: "Beth Ellen", "Times New Roman", Georgia, serif; }
 
 .danger {
-  align-self: flex-start;
-  background: #b22222;
-  color: #fff;
+  background: transparent;
   border: none;
-  padding: clamp(4px, 1.5cqw, 8px) clamp(8px, 2cqw, 12px);
-  border-radius: 6px;
+  color: rgb(0, 0, 0);
+  font-size: 1.4rem;
+  line-height: 1;
   cursor: pointer;
+  padding: 0 4px;
+  transition: color 0.2s ease, transform 0.15s ease;
 }
-.danger:hover { background: #8b0000; }
+
+.danger:hover {
+  color: #c00;
+  transform: scale(1.2);
+}

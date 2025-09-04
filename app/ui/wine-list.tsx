@@ -53,7 +53,17 @@ export default function WineList({ defaultWines }: { defaultWines: Wine[] }) {
       <div className={styles.rows}>
         {wines.map((w) => (
           <div className={styles.card} key={w.id} data-testid="wine-row">
-            <h3 className={styles.title}>{w.name}</h3>
+            <div className={styles.titleRow}>
+              <h3 className={styles.title}>{w.name}</h3>
+              <button
+                className={styles.danger}
+                data-testid={`delete-${w.id}`}
+                onClick={() => removeWine(w.id)}
+                aria-label={`Ta bort ${w.name}`}>
+                ×
+              </button>
+            </div>
+
             <div className={styles.meta}>
               <span>{w.country}</span> • <span>{w.grape}</span> •{" "}
               <span>{w.type}</span>
@@ -70,12 +80,6 @@ export default function WineList({ defaultWines }: { defaultWines: Wine[] }) {
                 <span className={styles.empty}>Inga anteckningar</span>
               )}
             </div>
-            <button
-              className={styles.danger}
-              data-testid={`delete-${w.id}`}
-              onClick={() => removeWine(w.id)}>
-              Ta bort
-            </button>
           </div>
         ))}
         {wines.length === 0 && <p>Inga viner ännu.</p>}
