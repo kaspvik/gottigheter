@@ -1,4 +1,17 @@
-# NextJS + Cypress boilerplate
+# Vinkällar’n
+
+Är en webbapplikation för att hålla koll på dina viner vars funktionalitet ska testas med Cypress E2E automatiserade tester. Applikationens layout är en inspiration utifrån kokboken `Gottigheter`.
+Byggd med **Next.js, Prisma, SQLite och Cypress**.
+
+---
+
+## Funktioner
+
+- Lägg till nya viner med namn, land, druva, sort, recension och betyg.
+- Radera viner direkt från listan (med ett litet kryss i hörnet).
+- E2E-tester med Cypress (lägg till, radera, validera formulär osv.).
+
+---
 
 ## Kom igång
 
