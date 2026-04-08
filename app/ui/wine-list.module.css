@@ -20,7 +20,7 @@
 .heading {
   text-align: center;
   font-family: "Beth Ellen", "Times New Roman", Georgia, serif;
-  font-size: clamp(42px, 4cqw, 30px);
+  font-size: clamp(20px, 4cqw, 42px);
   margin: 0;
   padding-bottom: clamp(4px, .8cqh, 8px);
   border-bottom: 2px solid #000000;

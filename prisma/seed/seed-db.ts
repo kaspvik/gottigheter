@@ -19,6 +19,6 @@ export async function seedDb(): Promise<void> {
   }
 }
 
-export async function seedDatabase(_opts: { drop?: boolean } = {}) {
+export async function seedDatabase() {
   return seedDb();
 }

@@ -19,7 +19,8 @@ export default function WineList({ defaultWines }: { defaultWines: Wine[] }) {
     text: string;
   } | null>(null);
 
-  async function removeWine(id: string) {
+  async function removeWine(id: string, name: string) {
+    if (!window.confirm(`Ta bort "${name}"?`)) return;
     setMsg(null);
     try {
       const res = await fetch(`/api/wines/${id}`, { method: "DELETE" });
@@ -58,7 +59,7 @@ export default function WineList({ defaultWines }: { defaultWines: Wine[] }) {
               <button
                 className={styles.danger}
                 data-testid={`delete-${w.id}`}
-                onClick={() => removeWine(w.id)}
+                onClick={() => removeWine(w.id, w.name)}
                 aria-label={`Ta bort ${w.name}`}>
                 ×
               </button>

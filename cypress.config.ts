@@ -43,14 +43,14 @@ export default defineConfig({
       // 5a) Återställ databasen innan varje testfil körs
       on("before:spec", async () => {
         const { seedDatabase } = await import("./prisma/seed/seed-db");
-        await seedDatabase({ drop: true });
+        await seedDatabase();
       });
 
       // 5b) Skapa en task för att återställa databasen innan varje it-test körs
       on("task", {
         async reseed() {
           const { seedDatabase } = await import("./prisma/seed/seed-db");
-          await seedDatabase({ drop: true });
+          await seedDatabase();
           return null;
         },
       });

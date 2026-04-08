@@ -51,7 +51,6 @@ export default function WineForm() {
         setNotes("");
         setRating("");
         router.push("/wines");
-        router.refresh();
       }
     } catch {
       setMsg({ type: "error", text: "Nätverksfel" });
@@ -123,7 +122,7 @@ export default function WineForm() {
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Vad tyckte du?"
-            rows={1}
+            rows={3}
           />
         </div>
 
