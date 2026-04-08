@@ -1,50 +1,46 @@
 .list {
-  container-type: size; 
+  container-type: inline-size;
   color: #111;
 
   background: #fff7d5;
   box-shadow: 0 80px 16px rgba(0, 0, 0, 0.40);
 
   width: min(95vw, 500px);
-  aspect-ratio: 210 / 297;   
-  margin: 1.25rem auto;
-  padding: clamp(12px, 2cqw, 20px);
+  margin: 1.25rem auto 3rem;
+  padding: clamp(16px, 4cqw, 28px);
 
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.2cqw, 12px); 
-
-  overflow: auto;
+  gap: 12px;
 }
 
 .heading {
   text-align: center;
   font-family: "Beth Ellen", "Times New Roman", Georgia, serif;
-  font-size: clamp(20px, 4cqw, 42px);
+  font-size: clamp(24px, 5cqw, 42px);
   margin: 0;
-  padding-bottom: clamp(4px, .8cqh, 8px);
-  border-bottom: 2px solid #000000;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #000;
 }
 
 .rows {
-  flex: 1 1 auto;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  --g: clamp(6px, 1.2cqw, 12px);
+  --g: clamp(8px, 2cqw, 14px);
   gap: var(--g);
 }
 
 .card {
   background: transparent;
-  padding: clamp(6px, 1.4cqw, 12px);
+  padding: clamp(8px, 2cqw, 14px);
 
   flex: 1 1 calc(50% - var(--g));
   min-width: calc(50% - var(--g));
 
   display: flex;
   flex-direction: column;
-  row-gap: clamp(4px, .8cqh, 8px);
+  gap: 6px;
 }
 
 .titleRow {
@@ -57,37 +53,41 @@
   margin: 0;
   font-family: var(--font-caveat), cursive;
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: clamp(1.1rem, 4cqw, 1.5rem);
 }
 
 .meta {
   color: #222;
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 3cqw, 1rem);
   font-family: var(--font-caveat), cursive;
   margin: 0;
 }
 
 .rating {
-  font-size: clamp(13px, 2cqw, 16px);
+  font-size: clamp(13px, 3cqw, 16px);
   color: #d4af37;
   margin: 0;
 }
 
 .notes {
   font-family: var(--font-caveat), cursive;
-    font-size: 1rem;
-  background: rgba(0,0,0,0.02);
-  border-left: 3px solid rgba(0,0,0,0.08);
-  padding: clamp(4px, 1cqw, 8px) clamp(6px, 1.5cqw, 10px);
+  font-size: clamp(0.85rem, 3cqw, 1rem);
+  background: rgba(0, 0, 0, 0.02);
+  border-left: 3px solid rgba(0, 0, 0, 0.08);
+  padding: 4px 8px;
   color: #111;
 }
 
-.empty { color: #777; font-style: italic;   font-family: "Beth Ellen", "Times New Roman", Georgia, serif; }
+.empty {
+  color: #777;
+  font-style: italic;
+  font-family: "Beth Ellen", "Times New Roman", Georgia, serif;
+}
 
 .danger {
   background: transparent;
   border: none;
-  color: rgb(0, 0, 0);
+  color: #000;
   font-size: 1.4rem;
   line-height: 1;
   cursor: pointer;
@@ -100,7 +100,8 @@
   transform: scale(1.2);
 }
 
-@container (inline-size < 400px) {
+/* På smala skärmar (< 380px container) — enkollayout */
+@container (inline-size < 380px) {
   .card {
     flex-basis: 100%;
     min-width: 100%;

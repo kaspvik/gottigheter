@@ -1,36 +1,33 @@
 .paper {
-  container-type: size; 
+  container-type: inline-size;
   color: #111;
 
   background: #fff7d5;
   box-shadow: 0 80px 16px rgba(10, 6, 6, 0.4);
 
   width: min(95vw, 500px);
-  aspect-ratio: 210 / 297; /* A4 */
-  margin: 1.25rem auto;
-  padding: clamp(12px, 2cqw, 20px);
+  margin: 1.25rem auto 3rem;
+  padding: clamp(16px, 4cqw, 28px);
 
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.2cqw, 12px);
-  overflow: auto;
+  gap: 12px;
 }
 
 .heading {
   text-align: center;
   font-family: "Beth Ellen", "Times New Roman", Georgia, serif;
-  font-size: clamp(20px, 4cqw, 42px);
+  font-size: clamp(24px, 5cqw, 42px);
   margin: 0;
-  padding-bottom: clamp(4px, .8cqh, 8px);
-  border-bottom: 2px solid #000000;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #000;
 }
 
 .rows {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-
-  --g: clamp(6px, 1.2cqw, 12px);
+  --g: clamp(8px, 2cqw, 14px);
   gap: var(--g);
 }
 
@@ -39,7 +36,7 @@
   min-width: calc(50% - var(--g));
   display: flex;
   flex-direction: column;
-  gap: clamp(4px, .8cqh, 8px);
+  gap: 6px;
 }
 
 .cellFull {
@@ -48,8 +45,8 @@
 }
 
 .cell label {
-  font-size: clamp(12px, 1.6cqw, 15px);
-    font-family: "Beth Ellen", "Times New Roman", Georgia, serif;
+  font-size: clamp(13px, 2.4cqw, 15px);
+  font-family: "Beth Ellen", "Times New Roman", Georgia, serif;
   color: #111;
   opacity: .9;
   margin-bottom: 2px;
@@ -60,14 +57,15 @@
   background: transparent;
   border: none;
   border-bottom: 2px solid #000;
-  font-size: max(1rem, 16px);
-   font-family: var(--font-caveat), cursive;
-  border-radius: 0;              
-  padding: 6px 2px 4px;          
-  outline: none;                 
-  box-shadow: none;              
-  transition: border-color .15s ease, background-color .15s ease;
-  caret-color: #000;             
+  font-size: 16px;
+  font-family: var(--font-caveat), cursive;
+  border-radius: 0;
+  padding: 6px 2px 4px;
+  outline: none;
+  box-shadow: none;
+  transition: border-color .15s ease;
+  caret-color: #000;
+  width: 100%;
 }
 
 .cell :where(input, select, textarea):focus {
@@ -76,22 +74,21 @@
 }
 
 .cell :where(input, textarea)::placeholder {
-  font-size: clamp(12px, 1.4cqw, 13px);
-   font-family: var(--font-caveat), cursive;
-  color: rgba(0,0,0,0.45);
+  font-size: 14px;
+  font-family: var(--font-caveat), cursive;
+  color: rgba(0, 0, 0, 0.45);
 }
 
 .primary {
   align-self: center;
   font-family: "Beth Ellen", cursive;
-  font-size: clamp(20px, 2cqw, 20px);
-
-  color: #000000;
+  font-size: 20px;
+  color: #000;
   border: none;
-  padding: clamp(6px, 1.4cqw, 10px) clamp(10px, 2cqw, 14px);
+  padding: 8px 16px;
   margin-top: 10px;
   cursor: pointer;
-  transition: background .2s ease, transform .15s ease;
+  transition: transform .15s ease;
 }
 
 .primary:hover {
@@ -108,18 +105,18 @@
   color: #b00020;
   background: #fde7ea;
   border: 1px solid #f0b9c1;
-  padding: clamp(6px, 1.2cqw, 10px);
+  padding: 8px 10px;
   border-radius: 8px;
-  margin-top: clamp(6px, 1cqh, 10px);
+  margin-top: 8px;
 }
 
 .success {
   color: #14532d;
   background: #e9f7ef;
   border: 1px solid #cce7d8;
-  padding: clamp(6px, 1.2cqw, 10px);
+  padding: 8px 10px;
   border-radius: 8px;
-  margin-top: clamp(6px, 1cqh, 10px);
+  margin-top: 8px;
 }
 
 .visuallyHidden {
@@ -131,11 +128,10 @@
   white-space: nowrap;
 }
 
-@container (inline-size < 640px) {
+/* På smala skärmar (< 380px container) — enkollayout */
+@container (inline-size < 380px) {
   .cell {
     flex-basis: 100%;
     min-width: 100%;
   }
 }
-
-

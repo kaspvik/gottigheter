@@ -2,34 +2,64 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
   padding: 24px 16px;
   text-align: center;
-  overflow-x: hidden;
 }
 
 .title {
-  margin: 0 0 8px;
+  margin: 0 0 16px;
   font-family: "Beth Ellen", "Times New Roman", Georgia, serif;
-  font-size: 40px;
+  font-size: clamp(28px, 8vw, 48px);
   line-height: 1.1;
 }
 
-.stage {
-  position: relative;
-  width: 670px;
-  aspect-ratio: 670 / 700;
-  margin: 0 auto;
+/* Scenen: de två raderna staplade */
+.scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 3vw, 24px);
+  width: 100%;
+  max-width: 600px;
 }
 
-.item {
-  position: absolute;
-  transform-origin: center;
+/* Rad 1: tavla + vinhylla sida vid sida */
+.shelf {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(8px, 3vw, 20px);
 }
-.item img {
-  display: block;
-  width: 100%;
+
+.tavla {
+  width: clamp(100px, 38vw, 240px);
   height: auto;
 }
 
+.vinhylla {
+  width: clamp(110px, 42vw, 260px);
+  height: auto;
+}
 
+/* Rad 2: tre nav-items jämnt fördelade */
+.nav {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(12px, 4vw, 32px);
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navImg {
+  width: clamp(60px, 16vw, 110px);
+  height: auto;
+}
+
+.rotateMinus  { transform: rotate(-20deg); }
+.rotatePlus   { transform: rotate(10deg); }
+.rotatePlus90 { transform: rotate(90deg); }
