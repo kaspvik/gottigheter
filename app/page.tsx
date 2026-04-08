@@ -13,40 +13,49 @@ type Placement = {
   alt?: string;
 };
 
+// Stage canvas: 670 × 700 "design-px" (det faktiska bounding-boxet för alla items).
+// left/top = itemets center som % av canvas. width = itemets bredd som % av canvas.
+// Scenen skalar proportionellt på alla skärmstorlekar utan overflow.
 const PLACEMENTS: Placement[] = [
   {
     id: "frame",
     src: "/tavla.svg",
-    top: 160,
-    left: -80,
-    width: 300,
+    top: 27.4,
+    left: 22.4,
+    width: 44.8,
     alt: "Tavla med omslaget från kokboken 'Gottigheter'",
   },
   {
     id: "shelf",
     src: "/vinhylla.svg",
-    top: 160,
-    left: 270,
-    width: 340,
+    top: 27.4,
+    left: 74.6,
+    width: 50.7,
     alt: "Vinhylla",
   },
-
   {
     id: "add",
     src: "/nytt-vin.svg",
-    top: 480,
-    left: -120,
-    width: 120,
+    top: 82.3,
+    left: 16.4,
+    width: 17.9,
     rotate: -20,
     link: "/wines/new",
   },
-  { id: "food", src: "/mat.svg", top: 480, left: 50, width: 160, rotate: 90 },
+  {
+    id: "food",
+    src: "/mat.svg",
+    top: 85.3,
+    left: 41.8,
+    width: 23.9,
+    rotate: 90,
+  },
   {
     id: "list",
     src: "/vinlistan.svg",
-    top: 480,
-    left: 220,
-    width: 120,
+    top: 82.3,
+    left: 67.2,
+    width: 17.9,
     rotate: 10,
     link: "/wines",
   },

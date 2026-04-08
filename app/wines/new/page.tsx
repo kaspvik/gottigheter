@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function NewWinePage() {
   return (
-    <main>
+    <main style={{ paddingTop: "64px" }}>
       <Link href="/" className="backButton">
         ← gå tillbaka
       </Link>

@@ -6,7 +6,7 @@ export default async function WinesPage() {
   const wines = await prisma.wine.findMany({ orderBy: { createdAt: "desc" } });
 
   return (
-    <main>
+    <main style={{ paddingTop: "64px" }}>
       <Link href="/" className="backButton">
         ← gå tillbaka
       </Link>

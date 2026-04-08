@@ -19,7 +19,7 @@
 .heading {
   text-align: center;
   font-family: "Beth Ellen", "Times New Roman", Georgia, serif;
-  font-size: clamp(42px, 4cqw, 28px);
+  font-size: clamp(20px, 4cqw, 42px);
   margin: 0;
   padding-bottom: clamp(4px, .8cqh, 8px);
   border-bottom: 2px solid #000000;
@@ -48,7 +48,7 @@
 }
 
 .cell label {
-  font-size: clamp(15px, 1.6cqw, 14px);
+  font-size: clamp(12px, 1.6cqw, 15px);
     font-family: "Beth Ellen", "Times New Roman", Georgia, serif;
   color: #111;
   opacity: .9;
@@ -57,9 +57,10 @@
 
 .cell :where(input, select, textarea) {
   color: #111;
-  background: transparent;       
-  border: none;                  
-  border-bottom: 2px solid #000; 
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #000;
+  font-size: max(1rem, 16px);
    font-family: var(--font-caveat), cursive;
   border-radius: 0;              
   padding: 6px 2px 4px;          
@@ -75,7 +76,7 @@
 }
 
 .cell :where(input, textarea)::placeholder {
-  font-size: clamp(13px, 1.4cqw, 12px);
+  font-size: clamp(12px, 1.4cqw, 13px);
    font-family: var(--font-caveat), cursive;
   color: rgba(0,0,0,0.45);
 }

@@ -5,6 +5,7 @@
   gap: 16px;
   padding: 24px 16px;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .title {
@@ -16,9 +17,9 @@
 
 .stage {
   position: relative;
-  width: 100px;   
-  height: 120px;  
-  margin: 8px auto 24px;
+  width: 670px;
+  aspect-ratio: 670 / 700;
+  margin: 0 auto;
 }
 
 .item {
@@ -27,7 +28,7 @@
 }
 .item img {
   display: block;
-  width: 100%;   
+  width: 100%;
   height: auto;
 }
 

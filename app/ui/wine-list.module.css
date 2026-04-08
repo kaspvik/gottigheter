@@ -99,3 +99,10 @@
   color: #c00;
   transform: scale(1.2);
 }
+
+@container (inline-size < 400px) {
+  .card {
+    flex-basis: 100%;
+    min-width: 100%;
+  }
+}
