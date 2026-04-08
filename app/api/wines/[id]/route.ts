@@ -1,4 +1,5 @@
 import { prisma } from "@/prisma/db";
+import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -23,6 +24,12 @@ export async function DELETE(
         { error: (err as z.ZodError).issues[0]?.message },
         { status: 400 }
       );
+    }
+    if (
+      err instanceof Prisma.PrismaClientKnownRequestError &&
+      err.code === "P2025"
+    ) {
+      return NextResponse.json({ error: "Vinet hittades inte" }, { status: 404 });
     }
     return NextResponse.json({ error: "Kunde inte ta bort" }, { status: 500 });
   }

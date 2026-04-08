@@ -14,7 +14,7 @@ model Wine {
   grape   String
   type    String
   notes   String?
-  rating  Int
+  rating  Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

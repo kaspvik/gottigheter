@@ -13,7 +13,6 @@ export async function seedDb(): Promise<void> {
     );
   const prisma = new PrismaClient({ datasources: { db: { url } } });
   try {
-    await prisma.wine.deleteMany({});
     await seedWines(prisma);
   } finally {
     await prisma.$disconnect();
