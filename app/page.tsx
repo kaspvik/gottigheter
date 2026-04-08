@@ -61,6 +61,7 @@ export default function Home() {
         {PLACEMENTS.map((p) => {
           const body = (
             <div
+              key={p.id}
               className={styles.item}
               style={{
                 top: `${p.top}%`,
